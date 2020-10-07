@@ -7,13 +7,15 @@
         mc:Ignorable="d"
         Title="TaskManager" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="dgList" FontSize="14" FontWeight="Bold" Margin="10">
+        <DataGrid x:Name="dgList" FontSize="14" FontWeight="Bold" Margin="10" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Header="StartDate" Width="180"/>
-                <DataGridCheckBoxColumn IsReadOnly="True" Header="Status" Width="80"/>
-                <DataGridTextColumn IsReadOnly="False" Header="Task" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path= StartDate}" IsReadOnly="True" Header="StartDate" Width="180"/>
+                <DataGridCheckBoxColumn Binding="{Binding Path= Status, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" Header="Status" Width="50"/>
+                <DataGridTextColumn Binding= "{Binding Path= Task, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" Header="Task" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        
-     </Grid>
+        <Button x:Name="Delete_" Content="Delete" HorizontalAlignment="Left" Margin="694,15,0,0" VerticalAlignment="Top" Width="75" Click="Delete__Click"/>
+        <Button x:Name="Add" Content="Add" HorizontalAlignment="Left" Margin="596,15,0,0" VerticalAlignment="Top" Width="75" Click="Add_Click"/>
+
+    </Grid>
 </Window>

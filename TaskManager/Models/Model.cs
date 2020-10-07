@@ -1,29 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace TaskManager.Models
 {
-    class Model
+    class Model : INotifyPropertyChanging
     {
         public DateTime StartDate { get; set; } = DateTime.Now;
 
         private bool _Status;
+        private string _Task;
 
         public bool Status
         {
             get { return _Status; }
-            set { _Status = value; }
+            set
+            {
+                if (_Status == value)
+                    return;
+                _Status = value;
+                OnPropertyChanging("Status");
+            }
         }
 
-        private string _Task;
+
 
         public string Task
         {
             get { return _Task; }
-            set { _Task = value; }
+            set
+            {
+                if (_Task == value)
+                    return;
+                _Task = value;
+                OnPropertyChanging("Task");
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        protected virtual void OnPropertyChanging(string propertyName = "")
+        {
+            PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
         }
     }
 }
