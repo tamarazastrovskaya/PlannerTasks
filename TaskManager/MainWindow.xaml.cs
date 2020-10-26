@@ -58,15 +58,6 @@ namespace TaskManager
 
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
 
-
-        }
-
-        private void Delete__Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
